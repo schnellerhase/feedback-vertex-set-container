@@ -59,3 +59,5 @@ RUN cd scip && cmake . -GNinja \
     -DZIMPL=OFF \
     -DZLIB=ON
 RUN cd scip && ninja install
+
+ENV LD_LIBRARY_PATH /usr/local/lib

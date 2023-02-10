@@ -1,29 +1,36 @@
-FROM ubuntu:22.04
+# FROM ubuntu:22.04
+FROM alpine
 
 ARG BUILD_TYPE[=Release]
 
-RUN apt-get update
+# RUN apt-get update
 # RUN apt-get install tzdata -y
 # RUN TZ="America/New_York"
 
-RUN apt-get upgrade -y
-RUN apt-get install -y \
-    build-essential \
-    clang \
-    clang-format \
-    clang-tidy \
-    cmake \
+# RUN apt-get upgrade -y
+
+# RUN apt-get install -y \
+RUN apk add \
+    build-base \
     git \
-    lib32ncurses5-dev \
-    libbenchmark-dev \
-    libblas-dev \
-    libboost-program-options-dev \
-    libgmp3-dev \
-    libgtest-dev \
-    libreadline-dev \
-    libz-dev \
-    ninja-build \
-    wget
+    cmake \
+    ninja \
+    clang \
+    gtest-dev \
+    zlib
+    
+    # clang \
+    # clang-format \
+    # clang-tidy \
+    # lib32ncurses5-dev \
+    # libbenchmark-dev \
+    # libblas-dev \
+    # libboost-program-options-dev \
+    # libgmp3-dev \
+    # libgtest-dev \
+    # libreadline-dev \
+    # libz-dev \
+    # wget
 
 RUN git clone https://github.com/scipopt/soplex.git soplex
 RUN cd soplex && cmake . -GNinja \
